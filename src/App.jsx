@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 
 import { NewClient } from "./pages/NewClient";
 import { EditClient } from "./pages/EditClient";
+import { ClientInfo } from "./pages/ClientInfo";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                         <Route index element={<HomePage />} />
                         <Route path="new" element={<NewClient />} />
                         <Route path="edit/:id" element={<EditClient />} />
+                        <Route path=":id" element={<ClientInfo />} />
                     </Route>
                 </Route>
             </Routes>

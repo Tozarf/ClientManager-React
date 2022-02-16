@@ -1,8 +1,12 @@
 import { Field, Form as Formulario, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Alert } from "./Alert";
+import { Spinner } from "./Spinner";
 
-export const Form = () => {
+export const Form = ({ client, loading }) => {
+    const navigate = useNavigate();
+
     const newClientsSchema = Yup.object().shape({
         name: Yup.string()
             .min(3, "Name is too short")
@@ -16,24 +20,57 @@ export const Form = () => {
             .typeError("Invalid number"),
     });
 
-    const handleSubmit = (values) => {
-        console.log(values);
+    const handleSubmit = async (values) => {
+        try {
+            let response;
+            if (client.id) {
+                const url = `http://localhost:3000/clients/${client.id}`;
+                response = await fetch(url, {
+                    method: "PUT",
+                    body: JSON.stringify(values),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+            } else {
+                // New Registry
+                const url = "http://localhost:3000/clients";
+                response = await fetch(url, {
+                    method: "POST",
+                    body: JSON.stringify(values),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
+
+            await response.json();
+
+            navigate("/clients");
+        } catch (error) {
+            console.log(error);
+        }
     };
-    return (
+    return loading ? (
+        <Spinner />
+    ) : (
         <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
             <h1 className="text-gray-600 font-bold text-xl uppercase text-center">
-                Add Client
+                {client?.name ? "Edit Client" : "Add Client"}
             </h1>
             <Formik
                 initialValues={{
-                    name: "",
-                    company: "",
-                    email: "",
-                    phone: "",
-                    notes: "",
+                    name: client?.name ?? "",
+                    company: client?.company ?? "",
+                    email: client?.email ?? "",
+                    phone: client?.phone ?? "",
+                    notes: client?.notes ?? "",
                 }}
-                onSubmit={(values) => {
-                    handleSubmit(values);
+                enableReinitialize={true}
+                onSubmit={async (values, { resetForm }) => {
+                    await handleSubmit(values);
+
+                    resetForm();
                 }}
                 validationSchema={newClientsSchema}
             >
@@ -46,7 +83,7 @@ export const Form = () => {
                                 </label>
                                 <Field
                                     id="name"
-                                    type="password"
+                                    type="text"
                                     className="mt-2 block w-full p-3 bg-gray-50"
                                     placeholder="Client Name"
                                     name="name"
@@ -127,7 +164,9 @@ export const Form = () => {
                             </div>
                             <input
                                 type="submit"
-                                value="Add Client"
+                                value={
+                                    client?.name ? "Edit Client" : "Add Client"
+                                }
                                 className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"
                             />
                         </Formulario>
@@ -136,4 +175,9 @@ export const Form = () => {
             </Formik>
         </div>
     );
+};
+
+Form.defaultProps = {
+    client: {},
+    loading: false,
 };

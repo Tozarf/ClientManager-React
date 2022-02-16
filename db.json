@@ -1,8 +1,52 @@
 {
-    "clients": [
-        {
-            "id": 1,
-            "name": "Fausto"
-        }
-    ]
+  "clients": [
+    {
+      "name": "Fausto Zaruma UPDATED",
+      "company": "Enroute Systems",
+      "email": "Fazatojuni@gmail.com",
+      "phone": "6183027291",
+      "notes": "asdfasdfasdf",
+      "id": 2
+    },
+    {
+      "name": "Fausto Zaruma",
+      "company": "Enroute Systems",
+      "email": "Fazatojuni@gmail.com",
+      "phone": "6183027291",
+      "notes": "asdfasdfasdf",
+      "id": 3
+    },
+    {
+      "name": "Pamela",
+      "company": "En",
+      "email": "Pamela_lozano@gmail.com",
+      "phone": "6182938832",
+      "notes": "",
+      "id": 5
+    },
+    {
+      "name": "Fausto Zaruma",
+      "company": "Enroute Systems",
+      "email": "Fazatojuni@gmail.com",
+      "phone": "6183027291",
+      "notes": "dddddd",
+      "id": 6
+    },
+    {
+      "name": "test ",
+      "company": "test",
+      "email": "fausto.zaruma@enroutesystems.com",
+      "phone": "123123123",
+      "notes": "asdfasdf",
+      "id": 7
+    },
+    {
+      "name": "Degar - UPDATED",
+      "company": "Company",
+      "email": "email@ads.cpm",
+      "phone": "6182032938",
+      "notes": "New client",
+      "id": 8
+    }
+  ]
 }
