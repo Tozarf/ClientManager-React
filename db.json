@@ -1,15 +1,7 @@
 {
   "clients": [
     {
-      "name": "Fausto Zaruma UPDATED",
-      "company": "Enroute Systems",
-      "email": "Fazatojuni@gmail.com",
-      "phone": "6183027291",
-      "notes": "asdfasdfasdf",
-      "id": 2
-    },
-    {
-      "name": "Fausto Zaruma",
+      "name": "Fausto Zaruma2",
       "company": "Enroute Systems",
       "email": "Fazatojuni@gmail.com",
       "phone": "6183027291",
@@ -17,7 +9,7 @@
       "id": 3
     },
     {
-      "name": "Pamela",
+      "name": "Pamela2",
       "company": "En",
       "email": "Pamela_lozano@gmail.com",
       "phone": "6182938832",
